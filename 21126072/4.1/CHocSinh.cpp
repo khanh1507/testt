@@ -35,7 +35,7 @@ using namespace std;
             delete []name;
             delete []address;
             delete []id;
-            cout<<"da huy";
+            //cout<<"da huy";
             cout<<endl;
         }
        void CHocSinh::input(){
@@ -57,14 +57,16 @@ using namespace std;
             cout<<"ID: "<<id<<endl;
             cout<<"Diem toan: "<<diem_toan<<endl;
             cout<<"Diem van: "<<diem_van<<endl;
+            cout<<"-----------\n";
         }
         char* CHocSinh::getName(){
             return name;
         }
         
         char* CHocSinh::getAddress(){
-        return address;
+            return address;
         }
+        
         char* CHocSinh::getId(){
             return id;
         }
@@ -78,79 +80,110 @@ using namespace std;
         double CHocSinh::getDiemTB(){
             return (diem_toan + diem_van)/2;
         }
-        // input list student
-        void CHocSinh::inputListStudent(vector<CHocSinh> &listStudent){
+        void CHocSinh::setDiemTB(double diemTB){
+            cout<<"setDiemTB: ";
+            if(diemTB >= 8){
+                cout<<"gio\ni";
+            }
+            else if(diemTB >= 7){
+                cout<<"kha\n";
+            }
+            else if(diemTB >= 5){
+                cout<<"trung binh\n";
+            }
+            else if(diemTB >5){
+                cout<<"yeu\n";
+            }
+        }        
+
+
+
+        void Cclass::input(){
             int n;
-            cout<<"Nhap so hoc sinh: ";
+            cout<<"Nhap so hoc sinh: \n";
             cin>>n;
+            
             for(int i = 0; i < n; i++){
+                cin.ignore();
                 CHocSinh hs;
                 hs.input();
-                listStudent.push_back(hs);
+                list.push_back(hs);
             }
         }
-        // output list student
-        void CHocSinh::outputListStudent(vector<CHocSinh> &listStudent){
-            for(int i = 0; i < listStudent.size(); i++){
-                listStudent[i].output();
+        void Cclass::output(){
+            for(int i = 0; i < list.size(); i++){
+                list[i].output();
             }
         }
-        // find student diem tb max
-        void CHocSinh::findStudentDiemTBMax(vector<CHocSinh> &listStudent){
-            double max = listStudent[0].getDiemTB();
-            int index = 0;
-            for(int i = 1; i < listStudent.size(); i++){
-                if(listStudent[i].getDiemTB() > max){
-                    max = listStudent[i].getDiemTB();
-                    index = i;
+        void Cclass::swap_student(CHocSinh &a,CHocSinh &b){
+            CHocSinh temp;
+            temp.assign(a.getName(), a.getAddress(), a.getId(), a.getDiemTB(), a.getDiemTB());
+            a.assign(b.getName(), b.getAddress(), b.getId(), b.getDiemTB(), b.getDiemTB());
+            b.assign(temp.getName(), temp.getAddress(), temp.getId(), temp.getDiemTB(), temp.getDiemTB());
+        }
+        
+        void Cclass::find_student_DTB_max(double diemTB){
+            for(int i = 0; i < list.size(); i++){
+                if(list[i].getDiemTB() == diemTB){
+                    list[i].output();
                 }
             }
-            cout<<"Hoc sinh co diem trung binh cao nhat la: "<<endl;
-            listStudent[index].output();
+            cout<<"diem trung binh max: "<<diemTB<<endl;
         }
-        //sort list student  ascending
-        void CHocSinh::sortListStudentAscending(vector<CHocSinh> &listStudent){
-            for(int i = 0; i < listStudent.size() - 1; i++){
-                for(int j = i + 1; j < listStudent.size(); j++){
-                    if(listStudent[i].getDiemTB() > listStudent[j].getDiemTB()){
-                        CHocSinh temp = listStudent[i];
-                        listStudent[i] = listStudent[j];
-                        listStudent[j] = temp;
-                    }
-                }
-            }
-        }
-        void CHocSinh::sortListStudentDescending(vector<CHocSinh> &listStudent){
-            for(int i = 0; i < listStudent.size() - 1; i++){
-                for(int j = i + 1; j < listStudent.size(); j++){
-                    if(listStudent[i].getDiemTB() < listStudent[j].getDiemTB()){
-                        CHocSinh temp = listStudent[i];
-                        listStudent[i] = listStudent[j];
-                        listStudent[j] = temp;
+        
+        
+        void Cclass::sort_ascending_name(){
+            for(int i = 0; i < list.size() - 1; i++){
+                for(int j = i + 1; j < list.size(); j++){
+                    if(strcmp(list[i].getName(), list[j].getName()) > 0){
+                        swap_student(list[i], list[j]);    
                     }
                 }
             }
         }
         
-
-void CHocSinh::findStudentFromNameOrId(vector<CHocSinh> &listStudent){
-    char* name;
-    char* id;
-    cout<<"Nhap ten hoc sinh can tim: ";
-    cin.ignore();
-    cin.getline(name,20);
-    cout<<"Nhap id hoc sinh can tim: ";
-    cin.ignore();
-    cin.getline(id,20);
-    for(int i = 0; i < listStudent.size(); i++){
-        if(strcmp(listStudent[i].name, name) == 0 && listStudent[i].id == id){
-            cout<<"Hoc sinh can tim la: "<<endl;
-            listStudent[i].output();
-            return;
+        void Cclass::sort_descending_name(){
+            for(int i = 0; i < list.size() - 1; i++){
+                for(int j = i + 1; j < list.size(); j++){
+                    if(strcmp(list[i].getName(), list[j].getName()) < 0){
+                        swap_student(list[i], list[j]);
+                    }
+                }
+            }
         }
-    }
-    cout<<"Khong tim thay hoc sinh"<<endl;
-}
         
-
+        void Cclass::sort_ascending_diemTB(){
+            for(int i = 0; i < list.size() - 1; i++){
+                for(int j = i + 1; j < list.size(); j++){
+                    if(list[i].getDiemTB() > list[j].getDiemTB()){
+                        swap_student(list[i], list[j]);
+                    }
+                }
+            }
+        }
+        
+        void Cclass::sort_descending_diemTB(){
+            for(int i = 0; i < list.size() - 1; i++){
+                for(int j = i + 1; j < list.size(); j++){
+                    if(list[i].getDiemTB() < list[j].getDiemTB()){
+                        swap_student(list[i], list[j]);
+                    }
+                }
+            }
+        }
+        void Cclass::find_student_by_name(char* name){
+            for(int i = 0; i < list.size(); i++){
+                if(strcmp(list[i].getName(), name) == 0){
+                    list[i].output();
+                }
+            }
+        }
+        void Cclass::find_student_by_id(char* id){
+            for(int i = 0; i < list.size(); i++){
+                if(strcmp(list[i].getId(), id) == 0){
+                    list[i].output();
+                }
+            }
+        }
+        
 
