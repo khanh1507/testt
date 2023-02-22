@@ -15,7 +15,6 @@ public:
   date(const date &d);
   ~date();
 
-  // getter/setter
   int getDay();
   int getMonth();
   int getYear();
@@ -26,22 +25,22 @@ public:
   void output();
 };
 
-class person {
+class nguoi {
 private:
   char *name;
-  date birthday;
+  date born;
 
 public:
-  person();
-  person(char *name);
-  person(const char *name, date birthday);
-  ~person();
+  nguoi();
+  nguoi(char *name);
+  nguoi(const char *name, date born);
+  ~nguoi();
   // setter
   date getDay();
   char *getName();
-  void setDay(date birthday);
+  void setDay(date born);
   void input();
   void output();
 
-  int age(date day_now);
+  int tuoi(date day_now);
 };

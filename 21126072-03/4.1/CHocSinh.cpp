@@ -57,7 +57,9 @@ using namespace std;
             cout<<"ID: "<<id<<endl;
             cout<<"Diem toan: "<<diem_toan<<endl;
             cout<<"Diem van: "<<diem_van<<endl;
+            cout<<"xep loai: "<<xeploai(getDiemTB())<<endl;
             cout<<"-----------\n";
+            
         }
         char* CHocSinh::getName(){
             return name;
@@ -94,7 +96,21 @@ using namespace std;
             else if(diemTB >5){
                 cout<<"yeu\n";
             }
-        }        
+        } 
+        string CHocSinh::xeploai(double diemTB){
+            if(diemTB >= 8){
+                return "gioi";
+            }
+            else if(diemTB >= 7){
+                return "kha";
+            }
+            else if(diemTB >= 5){
+                return "trung binh";
+            }
+            else if(diemTB >5){
+                return "yeu";
+            }
+        }
 
 
 
@@ -171,19 +187,28 @@ using namespace std;
                 }
             }
         }
-        void Cclass::find_student_by_name(char* name){
+        
+        CHocSinh Cclass::find_student_by_name(char* name){ 
+            cout<<"enter name: ";
+            cin.ignore();
+            cin.getline(name,20);
             for(int i = 0; i < list.size(); i++){
                 if(strcmp(list[i].getName(), name) == 0){
-                    list[i].output();
+                    return list[i];
                 }
             }
+            return CHocSinh();
         }
-        void Cclass::find_student_by_id(char* id){
+        CHocSinh Cclass::find_student_by_id(char* id){ 
+            cout<<"enter id: ";
+            cin.ignore();
+            cin.getline(id,8);
             for(int i = 0; i < list.size(); i++){
                 if(strcmp(list[i].getId(), id) == 0){
-                    list[i].output();
+                    return list[i];
                 }
             }
+            return CHocSinh();
         }
         
 

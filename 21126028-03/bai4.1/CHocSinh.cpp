@@ -108,7 +108,7 @@ using namespace std;
             cout<<"Hoc sinh co diem trung binh cao nhat la: "<<endl;
             listStudent[index].output();
         }
-        //sort list student  ascending
+      
         void CHocSinh::sortListStudentAscending(vector<CHocSinh> &listStudent){
             for(int i = 0; i < listStudent.size() - 1; i++){
                 for(int j = i + 1; j < listStudent.size(); j++){

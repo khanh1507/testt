@@ -39,13 +39,13 @@ int main(){
     lop1.sort_ascending_diemTB();
     lop1.output();
     
-    cout<<"tim kiem hoc sinh theo ten";
-    lop1.find_student_by_name(hs1.getName());
-    lop1.output();
+    cout<<"tim kiem hoc sinh theo ten => ";
+    lop1.find_student_by_name(hs1.getName()).output(); 
     
-    cout<<"tim kiem hoc sinh theo diem id";
-    lop1.find_student_by_id(hs1.getId());
-    lop1.output();
+    
+    cout<<"tim kiem hoc sinh theo diem id => ";
+    lop1.find_student_by_id(hs1.getId()).output();
+  
     
     
     return 0;
