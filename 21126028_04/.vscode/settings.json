@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.vim": "lua",
+        "cmath": "cpp",
+        "iostream": "cpp"
+    }
+}
