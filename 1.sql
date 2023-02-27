@@ -93,7 +93,7 @@ create table AFFECTATION
     numero int not null,
     allocation float null,
     resultat nvarchar(40) null,
-    Constraint PK_code_suj_code_ens_numero primary key (code_suj,code_ens,numero)
+    Constraint PK_code_suj_code_ens_numero primary key (code_ens, code_suj, numero)
 )
 
 
