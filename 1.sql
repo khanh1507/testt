@@ -23,8 +23,8 @@ create table FACULTE
     nom_fac nvarchar(40) null,
     annee_creation int null,
     bureau char(5) null,
-    telephone varchar(12) null,
-    chef_fac nchar(5) null,
+    telephone char(12) null,
+    chef_fac char(5) null,
     date_prise_fonction datetime null,
     Constraint PK_code_fac primary key (code_fac)
 )
