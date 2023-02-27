@@ -23,7 +23,7 @@ create table FACULTE
     nom_fac nvarchar(40) null,
     annee_creation int null,
     bureau char(5) null,
-    telephone char(12) null,
+    telephone varchar(12) null,
     chef_fac char(5) null,
     date_prise_fonction datetime null,
     Constraint PK_code_fac primary key (code_fac)
@@ -93,7 +93,7 @@ create table AFFECTATION
     numero int not null,
     allocation float null,
     resultat nvarchar(40) null,
-    Constraint PK_code_suj_code_ens_numero primary key (code_ens, code_suj, numero)
+    Constraint PK_code_suj_code_ens_numero primary key (code_suj,code_ens,numero)
 )
 
 
@@ -160,63 +160,63 @@ references ENSEIGNANT(code_ens)
 insert into DOMAINE values('TH', N'Toán học')
 insert into DOMAINE values('HH', N'Hóa học')
 insert into DOMAINE values(N'ĐCH', N'Địa chất học')
-insert into DOMAINE values('VLH', N'Vật lý học')
+insert into DOMAINE values('LSH', N'Lịch Sử học')
 
-insert into ENSEIGNANT values('001', N'Vũ Huyền Thiên Lý', 15000, 'F', '7/15/2003', N'Quận 10', NULL, NULL)
-insert into ENSEIGNANT values('002', N'Nguyễn Ngọc Khánh', 12000, 'M', '7/29/2003', N'Quận 8', NULL, NULL)
-insert into ENSEIGNANT values('003', N'Trần Bảo Nguyên', 9000, 'M', '1/20/2003', N'Bình Thạnh', NULL, NULL)
-insert into ENSEIGNANT values('004', N'Vũ Thành Công', 13500, 'M', '9/1/2003', N'Hóc Môn', NULL, NULL)
-insert into ENSEIGNANT values('005', N'Võ Diệp Phi Vũ', 12000, 'M', '10/11/2003', N'Bình Tân', NULL, NULL)
+insert into ENSEIGNANT values('001', N'Nguyễn Hoàng Khánh', 14000, 'F', '7/6/2004', N'Quận 10', NULL, NULL)
+insert into ENSEIGNANT values('002', N'Nguyễn Ngọc Khánh', 12000, 'M', '7/29/2004', N'Quận 8', NULL, NULL)
+insert into ENSEIGNANT values('003', N'Trần Bảo Nguyên', 9000, 'M', '1/12/2004', N'Bình Thạnh', NULL, NULL)
+insert into ENSEIGNANT values('004', N'Đinh Thị Hằng', 13500, 'M', '9/5/2004', N'Hóc Môn', NULL, NULL)
+insert into ENSEIGNANT values('005', N'Nguyễn Văn Hoàn', 12000, 'M', '10/1/2004', N'Bình Tân', NULL, NULL)
 
 
-insert into DEPARTEMENT values('HHC', N'Hóa Hữu Cơ', 'F205', '0912300321', NULL, NULL, '3/2/2000')
-insert into DEPARTEMENT values(N'TƯD', N'Toán Ứng Dụng', 'C402', '0934500543', NULL, NULL, '5/27/2000')
-insert into DEPARTEMENT values('VLKT', N'Vật Lý Điện Tử', 'B11A', '0956700765', NULL, NULL, '8/14/2000')
-insert into DEPARTEMENT values(N'KTĐC', N'Kỹ Thuật Địa Chất', 'E305', '0978900987', NULL, NULL, '12/1/2000')
+insert into DEPARTEMENT values('HHC', N'Hóa Hữu Cơ', 'F205', '55838383', NULL, NULL, '3/2/2006')
+insert into DEPARTEMENT values(N'TƯD', N'Toán Ứng Dụng', 'C402', '12343456', NULL, NULL, '5/27/2006')
+insert into DEPARTEMENT values('VLKT', N'Vật Lý Điện Tử', 'B11A', '040450696', NULL, NULL, '8/15/2006')
+insert into DEPARTEMENT values(N'KTĐC', N'Kỹ Thuật Địa Chất', 'E305', '878796443', NULL, NULL, '12/1/2006')
 
-insert into FACULTE values('FOP', N'Khoa Vật Lý', 2000, 'B1', '0956700765', NULL, '8/15/2000')
-insert into FACULTE values('FMC', N'Khoa Toán-Tin học', 2000, 'C4', '0934500543', NULL, '5/28/2000')
-insert into FACULTE values('FOC', N'Khoa Hóa Học', 2000, 'F2', '0912300321', NULL, '3/3/2000')
-insert into FACULTE values('FOG', N'Khoa Địa Chất', 2000, 'E3', '0978900987', NULL, '12/1/2000')
+insert into FACULTE values('KOD', N'Khoa Vật Lý', 2000, 'B1', '040450696', NULL, '8/15/2006')
+insert into FACULTE values('AUS', N'Khoa Toán-Tin học', 2000, 'C4', '12343456', NULL, '5/28/2006')
+insert into FACULTE values('POE', N'Khoa Hóa Học', 2000, 'F2', '55838383', NULL, '3/3/2006')
+insert into FACULTE values('ROG', N'Khoa Địa Chất', 2000, 'E3', '878796443', NULL, '12/1/2006')
 
 update ENSEIGNANT set code_dept='HHC', superviseur_direct='001' where code_ens='002'
 update ENSEIGNANT set code_dept=N'TƯD', superviseur_direct='003' where code_ens='004'
 update ENSEIGNANT set code_dept='VLKT', superviseur_direct='005' where code_ens='001'
 update ENSEIGNANT set code_dept=N'KTĐC', superviseur_direct='004' where code_ens='003'
 
-update DEPARTEMENT set chef_dept='001', code_fac='FOC' where code_dept='HHC'
-update DEPARTEMENT set chef_dept='003', code_fac='FMC' where code_dept=N'TƯD'
-update DEPARTEMENT set chef_dept='005', code_fac='FOP' where code_dept='VLKT'
-update DEPARTEMENT set chef_dept='004', code_fac='FOG' where code_dept=N'KTĐC'
+update DEPARTEMENT set chef_dept='001', code_fac='POE' where code_dept='HHC'
+update DEPARTEMENT set chef_dept='003', code_fac='AUS' where code_dept=N'TƯD'
+update DEPARTEMENT set chef_dept='005', code_fac='KOD' where code_dept='VLKT'
+update DEPARTEMENT set chef_dept='004', code_fac='ROG' where code_dept=N'KTĐC'
 
-update FACULTE set chef_fac='001' where code_fac='FOC'
-update FACULTE set chef_fac='003' where code_fac='FMC'
-update FACULTE set chef_fac='005' where code_fac='FOP'
-update FACULTE set chef_fac='004' where code_fac='FOG'
+update FACULTE set chef_fac='001' where code_fac='POE'
+update FACULTE set chef_fac='003' where code_fac='AUS'
+update FACULTE set chef_fac='005' where code_fac='KOD'
+update FACULTE set chef_fac='004' where code_fac='ROG'
 
-insert into FAMILLE values('001', N'Vũ Mộc Lan', '7/1/1968', 'F')
-insert into FAMILLE values('002', N'Nguyễn Hoàng Anh', '1/13/2000', 'M')
-insert into FAMILLE values('003', N'Đỗ Thúy Ngân', '3/3/2004', 'F')
-insert into FAMILLE values('004', N'Trần Nhật Vy', '2/14/2004', 'F')
-insert into FAMILLE values('005', N'Võ Văn Thành', '12/5/1970', 'M')
+insert into FAMILLE values('001', N'Trần Anh Nghĩa', '7/1/1968', 'F')
+insert into FAMILLE values('002', N'Nguyễn Hoàng Anh', '1/13/2006', 'M')
+insert into FAMILLE values('003', N'Đỗ Thúy Hằng', '3/3/2004', 'F')
+insert into FAMILLE values('004', N'Trần Nhật Ánh', '2/17/2004', 'F')
+insert into FAMILLE values('005', N'Lê Thành Đạt', '12/5/1990', 'M')
 
-insert into ENSEIGNANT_PHONE values('001', '0771230032')
-insert into ENSEIGNANT_PHONE values('002', '0772340043')
-insert into ENSEIGNANT_PHONE values('003', '0773450054')
-insert into ENSEIGNANT_PHONE values('004', '0774560065')
-insert into ENSEIGNANT_PHONE values('005', '0775670076')
+insert into ENSEIGNANT_PHONE values('001', '0365067988')
+insert into ENSEIGNANT_PHONE values('002', '0987867444')
+insert into ENSEIGNANT_PHONE values('003', '9999999999')
+insert into ENSEIGNANT_PHONE values('004', '8888888888')
+insert into ENSEIGNANT_PHONE values('005', '4526787657')
 
-insert into SUJET values('VTP', N'Vi Tích Phân', N'Năm 1', 1500, '9/2/2022', '12/14/2022', 'TH','005')
-insert into SUJET values(N'LĐC', N'Lý Đại Cương', N'Năm 1', 1200, '9/2/2022', '12/14/2022', 'VLH','003')
-insert into SUJET values('HHP', N'Hóa Học Polymer', N'Năm 3', 2500, '2/2/2025', '5/2/2025', 'HH','001')
-insert into SUJET values('KVH', N'Khoáng Vật Học', N'Năm 2', 1500, '2/2/2023', '5/2/2023', N'ĐCH','004')
+insert into SUJET values('VTP', N'Vi Tích Phân', N'Năm 1', 1400, '9/2/2023', '12/15/2023', 'TH','005')
+insert into SUJET values(N'LĐC', N'Lý Đại Cương', N'Năm 1', 1200, '9/2/2023', '12/15/2023', 'LSH','003')
+insert into SUJET values('HHP', N'Hóa Học Polymer', N'Năm 3', 2800, '2/2/2025', '5/2/2025', 'HH','001')
+insert into SUJET values('KVH', N'Vi Tích Phân', N'Năm 2', 1400, '2/2/2023', '5/2/2023', N'ĐCH','004')
 
-insert into TACHE values(N'LĐC', 1, N'Cơ học', '9/2/2022', '12/14/2022')
-insert into TACHE values('HHP', 2, N'Kết cấu', '2/2/2025', '5/2/2025')
-insert into TACHE values('KVH', 3, N'Phân loại khoáng vật', '2/2/2023', '5/2/2023')
-insert into TACHE values('VTP', 4, N'Đạo hàm', '9/2/2022', '12/14/2022')
+insert into TACHE values(N'LĐC', '1', N'Cơ học', '9/2/2023', '12/15/2023')
+insert into TACHE values('HHP', '2', N'Đại Số Tuyến Tính', '2/2/2025', '5/2/2025')
+insert into TACHE values('KVH', '3', N'Vi Tích Phân', '2/2/2023', '5/2/2023')
+insert into TACHE values('VTP', '4', N'Đạo hàm', '9/2/2023', '12/15/2023')
 
-insert into AFFECTATION values('001', 'HHP', 2, 9, 'PASS')
-insert into AFFECTATION values('003', 'KVH', 3, 9, 'PASS')
-insert into AFFECTATION values('004', N'LĐC', 1, 9, 'PASS')
-insert into AFFECTATION values('005', 'VTP', 4, 9, 'PASS')
+insert into AFFECTATION values('HHP','001', '2', 8, 'PASS')
+insert into AFFECTATION values('KVH','003',  '3', 8, 'PASS')
+insert into AFFECTATION values( N'LĐC','004', '1', 8, 'PASS')
+insert into AFFECTATION values('VTP','005',  '4', 8, 'PASS')
